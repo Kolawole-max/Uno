@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'data_collection/css/style2.css' %}" rel="stylesheet">
+    <script src="{% static 'data_collection/jss/script.js' %}" defer></script>
+    <script src="{% static 'data_collection/js/register.js' %}" defer></script>
+    <title>Registraion Form</title>
+  </head>
+  <body>
+    <form action="" method="POST" class="form">
+      {% csrf_token %}
+      <h1 class="text-center">Registration Form</h1>
+      <!-- Progress bar -->
+      <div class="progressbar">
+        <div class="progress" id="progress"></div>
+        <div class="progress-step progress-step-active" data-title="Pre"></div>
+        <div class="progress-step" data-title="Personal"></div>
+        <div class="progress-step" data-title="Address"></div>
+        <div class="progress-step" data-title="Photo Card"></div>
+        <div class="progress-step" data-title="Live Video"></div>
+      </div>
+
+      <!-- Steps -->
+      <div class="form-step form-step-active">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <span class="error-message email-error"></span>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" />
+          <span class="error-message password-error"></span>
+        </div>
+        <div class="">
+          <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <div class="input-group">
+          <label for="first-name">First Name</label>
+          <input type="text" name="firstname" id="firstname" />
+          <span class="error-message firstname-error"></span>
+        </div>
+        <div class="input-group">
+          <label for="last-name">Last Name</label>
+          <input type="text" name="lastname" id="lastname" />
+        </div>
+        <div class="input-group">
+          <label for="other-name">Other Names</label>
+          <input type="text" name="othername" id="othername" />
+        </div>
+        <div class="input-group">
+          <label for="contact-number">Contact Number:</label>
+          <input type="number" name="contact_number" id="contact_number" />
+        </div>
+        <div class="input-group">
+          <label for="gender">Gender:</label>
+          <select id="gender">
+            <option value="">Select...</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="marital">Marital:</label>
+          <select id="marital_status">
+            <option value="">Select...</option>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Engaged">Engaged</option>
+            <option value="Divorced">Divorced</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="occupation">Occupation:</label>
+          <input type="text" name="occupation" id="occupation" />
+        </div>
+        
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <a href="" name="create_data" id="create_data" class="btn btn-next">Next</a>
+        </div>
+      </div>
+
+
+
+      
+      <div class="form-step">
+        <div class="input-group">
+          <label for="address">Contact Address</label>
+          <input type="text" name="address" id="address" />
+          <span class="error-message address-error"></span>
+        </div>
+        <div class="input-group">
+          <label for="home-number">House Number</label>
+          <input type="number" name="home_number" id="home-number" />
+        </div>
+        <div class="input-group">
+          <label for="street-name">Street Name</label>
+          <input type="text" name="street-name" id="street-name" />
+        </div>
+        <div class="input-group">
+          <label for="city">City</label>
+          <input type="text" name="city" id="city" />
+        </div>
+        <div class="input-group">
+          <label for="postal-code">Postal Code</label>
+          <input type="text" name="postal-code" id="postal-code" />
+        </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <a href="#" class="btn btn-next">Next</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <div id="survey-options">
+          <div class="input-group">
+            <label>Submit at least two identification card with a photograph of you</label>
+            <input type="file" name="identification-card[]" class="identification-card" />
+          </div>
+          <div class="input-group">
+            <input type="file" name="identification-card[]" class="identification-card" />
+          </div>
+        </div>
+        <div class="input-group">
+          <button type="button"  id="btn-add-more">Add More</button>
+        </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <a href="#" class="btn btn-next">Next</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <div class="input-group">
+         <center> <video id="video" width="200" height="200" autoplay></video></center><br>
+        <center><video id="videoscreen" width="200" height="200"></video></center><br>
+          <button id="startRecord">Start Recording</button>
+          <button id="stopRecord">Stop Recording</button>
+          <!-- <a id="downloadLink" download="video.mp4"> Download Video</a> -->
+        </div>
+       <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <input type="submit" value="Submit" class="btn" />
+        </div>
+        </div>
+       
+      </div>
+    </form>
+  </body>
+</html>

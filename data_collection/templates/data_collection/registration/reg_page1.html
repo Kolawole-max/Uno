@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'data_collection/css/style2.css' %}" rel="stylesheet">
+    <script src="{% static 'data_collection/js/register.js' %}" defer></script>
+    <!--<script src="{% static 'data_collection/jss/script.js' %}" defer></script> -->
+    <title>Registraion Form</title>
+</head>
+
+<body>
+    <form action="{% url 'register' %}" method='POST' class="form">
+        {% csrf_token %}
+        <h1 class="text-center">Registration Form</h1>
+        <!-- Progress bar -->
+        <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step progress-step-active" data-title="Pre"></div>
+            <div class="progress-step" data-title="Personal"></div>
+            <div class="progress-step" data-title="Address"></div>
+            <div class="progress-step" data-title="Photo Card"></div>
+            <div class="progress-step" data-title="Live Video"></div>
+        </div>
+
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+            <div class="input-group">
+                <label for="email">Email</label>
+                {% if email %}
+                    <input type="email" name="email" id="email" value={{email}} />
+                    <span class='error-message email-error'>{{message}}</span>
+                {% else %}
+                    <input type="email" name="email" id="email" />
+                {% endif %}
+                <span class="error-message email-error"></span>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                {% if password %}
+                    <input type="password" name="password" id="password" value={{password}} />
+                {% else %}
+                    <input type="password" name="password" id="password" />
+                {% endif %}
+                
+                <span class="error-message password-error"></span>
+            </div>
+            <div class="">
+                <button type="submit" class="btn width-50 ml-auto">Next</button>
+            </div>
+        </div>
+       
+        </div>
+    </form>
+</body>
+</html>

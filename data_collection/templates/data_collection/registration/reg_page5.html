@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'data_collection/css/style2.css' %}" rel="stylesheet">
+    <!-- <script src="{% static 'data_collection/js/register.js' %}" defer></script> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <script src="{% static 'data_collection/js/face-api.min.js'%} "></script>
+    <script src="{% static 'data_collection/js/script.js' %}"></script>
+    <title>Live cam face verification</title>
+</head>
+
+<body>
+    
+    <div id="my-image" data-image-url="{{ image_url.doc.url }}"></div>
+    
+    <form action="user-login.html" class="form">
+        <h1 class="text-center">Live cam face verification</h1>
+        <!-- Progress bar -->
+        <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step" data-title="Pre"></div>
+            <div class="progress-step" data-title="Personal"></div>
+            <div class="progress-step" data-title="Address"></div>
+            <div class="progress-step" data-title="Photo Card"></div>
+            <div class="progress-step progress-step-active" data-title="Live Video"></div>
+        </div>
+
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+            <div class="input-group">
+                <center> <video id="video" width="200" height="200" autoplay></video></center><br>
+                {% comment %} <center><video id="videoscreen" width="200" height="200"></video></center><br> {% endcomment %}
+                
+                <!-- <a id="downloadLink" download="video.mp4"> Download Video</a> -->
+            </div>
+            {% comment %} <img src="{{image_url.doc.url}}" width="150" alt="" > {% endcomment %}
+        </div>
+    </form>
+</body>
+
+</html>

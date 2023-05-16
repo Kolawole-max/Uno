@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'data_collection/css/style2.css' %}" rel="stylesheet">
+    <!-- <script src="{% static 'data_collection/js/register.js' %}" defer></script> -->
+
+    <script src="{% static 'js/face-api.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <title>Registraion Form</title>
+</head>
+
+<body>
+    <form>
+        {% csrf_token %}
+        <h1 class="text-center">Live came face verification</h1>
+        <!-- Progress bar -->
+        <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step" data-title="Pre"></div>
+            <div class="progress-step" data-title="Personal"></div>
+            <div class="progress-step" data-title="Address"></div>
+            <div class="progress-step" data-title="Photo Card"></div>
+            <div class="progress-step progress-step-active" data-title="Live Video"></div>
+        </div>
+
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+            <div class="input-group">
+                <center> <video id="video" width="200" height="200" autoplay></video></center><br>
+                <center><video id="videoscreen" width="200" height="200"></video></center><br>
+                <button id="startRecord">Start Recording</button>
+                <button id="stopRecord">Stop Recording</button>
+                <!-- <a id="downloadLink" download="video.mp4"> Download Video</a> -->
+            </div>
+            <div class="btns-group">
+                <a href="user-login.html" class="btn btn-skip">Skip for now</a>
+                <input type="submit" value="Submit" class="btn" />
+            </div>
+        </div>
+
+        </div>
+    </form>
+</body>
+
+</html>

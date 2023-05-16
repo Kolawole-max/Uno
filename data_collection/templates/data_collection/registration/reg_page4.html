@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'data_collection/css/style2.css' %}" rel="stylesheet">
+    <script src="{% static 'data_collection/js/register.js' %}" defer></script>
+    <title>Registraion Form</title>
+</head>
+
+<body>
+    <form action="{% url 'documents_' %}" method='POST' class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 class="text-center">Documents submission Form</h1>
+        <!-- Progress bar -->
+        <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step" data-title="Pre"></div>
+            <div class="progress-step" data-title="Personal"></div>
+            <div class="progress-step" data-title="Address"></div>
+            <div class="progress-step progress-step-active" data-title="Photo Card"></div>
+            <div class="progress-step" data-title="Live Video"></div>
+        </div>
+
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+            <div id="survey-options">
+                <div class="input-group">
+                    {% if message %}
+                    <h1>message</h1>
+                    {% endif %}
+                    <label>Submit at least two identification card with a photograph of you</label>
+                    <input type="file" name="identification-card" id="file" class="identification-card" multiple/>
+                    <span class="error-message identification-card-error"></span>
+                </div>
+                <div class="input-group">
+                    <input type="file" name="identification-card" id="file2" class="identification-card" />
+                    <span class="error-message identification-card-error"></span>
+                </div>
+            </div>
+            <div class="input-group">
+                <button type="button" id="btn-add-more">Add More</button>
+            </div>
+            <div class="btns-group">
+                <button type="submit" class="btn">Next</button>
+            </div>
+        </div>
+        </div>
+    </form>
+</body>
+
+</html>

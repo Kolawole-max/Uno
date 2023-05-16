@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+    <form action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+        <input type="file" name="image">
+        <button name='submit' type='submit'>Submit</button>
+    </form>
+
+   <!-- <form action="{}" method="POST">
+        {% csrf_token %}
+        <input type="text" hidden name='share_text' id='share_text' content={{share_code}}>
+        
+    </form> -->
+    <button id='share_btn' name='share_btn'>{{share_code}}</button>
+    
+    <h1>{{data.firstname}}</h1>
+    <h1>{{data.lastname}}</h1>
+
+    <img src="{{image.passport.url}}" width="150" alt="" >
+
+    {% if message %}
+        <h1>{{message}} </h1>
+    {% endif %}
+
+    <script src="{% static 'data_collection/js/profile.js' %}"></script>
+</html>
