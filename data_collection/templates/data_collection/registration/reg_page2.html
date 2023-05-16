@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'data_collection/css/style2.css' %}" rel="stylesheet">
+    <script src="{% static 'data_collection/js/register.js' %}" defer></script>
+    <title>Registraion Form</title>
+</head>
+
+<body>
+    <form action="{% url 'create_data' %}" method='POST' class="form">
+        {% csrf_token %}
+        <h1 class="text-center">Personal data Form</h1>
+        <!-- Progress bar -->
+        <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step" data-title="Pre"></div>
+            <div class="progress-step progress-step-active" data-title="Personal"></div>
+            <div class="progress-step" data-title="Address"></div>
+            <div class="progress-step" data-title="Photo Card"></div>
+            <div class="progress-step" data-title="Live Video"></div>
+        </div>
+
+        <!-- Steps -->
+        
+        <div class="form-step form-step-active">
+            <div class="input-group">
+                <label for="first-name">First Name</label>
+                <input type="text" name="first-name" id="first-name" />
+                <span class="error-message first-name-error"></span>
+
+            </div>
+            <div class="input-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" name="last-name" id="last-name" />
+                <span class="error-message last-name-error"></span>
+
+            </div>
+            <div class="input-group">
+                <label for="other-name">Other Names (Optional)</label>
+                <input type="text" name="other-name" id="other-name" />
+                <span class="error-message other-name-error"></span>
+
+            </div>
+            <div class="input-group">
+                <label for="contact-number">Contact Number:</label>
+                <input type="number" name="contact-number" id="contact-number" />
+                <span class="error-message contact-number-error"></span>
+
+            </div>
+            <div class="input-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name='gender'>
+                    <option value="">Select...</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <span class="error-message gender-error"></span>
+
+            </div>
+            <div class="input-group">
+                <label for="marital">Marital:</label>
+                <select id="marital" name='marital'>
+                    <option value="">Select...</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Engaged">Engaged</option>
+                    <option value="Divorced">Divorced</option>
+                </select>
+                <span class="error-message marital-error"></span>
+
+            </div>
+            <div class="input-group">
+                <label for="occupation">Occupation:</label>
+                <input type="text" name="occupation" id="occupation" />
+                <span class="error-message occupation-error"></span>
+
+            </div>
+
+            <div class="btns-group">
+                <button type="submit" class="btn">Next</button>
+            </div>
+        </div>
+     
+        </div>
+    </form>
+</body>
+</html>

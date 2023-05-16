@@ -12,4 +12,5 @@ COPY . .
 
 EXPOSE 8000
 
+#CMD ["python","manage.py","createapp", "verify"]
 CMD ["python","manage.py","runserver"]
