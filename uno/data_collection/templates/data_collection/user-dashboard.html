@@ -1,0 +1,183 @@
+{% extends "data_collection/layout.html" %}
+{% load static %}
+
+{% block title %}
+	User Dashboard
+{% endblock %}
+
+{% block body %}
+
+    <!-- Modal Start Here -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+    
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create one time share code</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                <div class="container1">
+                    <div class="profiel-code-label">
+                        <center>Copy code to share personal details</center> 
+                    </div>
+                    <div class="copy-text">
+                        <input type="text" class="copy_text" name="" id="">
+                        
+                    </div>
+                    <br>
+                    <center><button id="copy-button" class="btn btn-lg btn-primary" data-dismiss="modal">Click to create and copy share code to clipboard</button></center>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    <!-- Modal End Here -->
+    
+        <!-- Page Area Start Here -->
+        <div class="dashboard-page-one"> 
+            <!-- Sidebar Area Start Here -->
+            
+            <!-- Sidebar Area End Here -->
+            <div class="dashboard-content-one">
+                <!-- Breadcubs Area Start Here -->
+                <div class="breadcrumbs-area">
+                    <h3>Dashboard</h3>
+                    <ul>
+                        <li>
+                            <a href="user-dashboard.html">Dashboard</a>
+                        </li>
+                        <li>User Details</li>
+                    </ul>
+                </div>
+                <!-- Breadcubs Area End Here -->
+                <!-- Student Details Area Start Here -->
+                <div class="card height-auto">
+                    <div class="card-body">
+                        <div class="heading-layout1">
+                            <div class="item-title">
+                            </div>
+                        </div>
+                        <div class="single-info-details">
+                            <div class="item-img">
+                                <img src="{{ img.faces.url }}" alt="student">
+                            </div>
+                            <div class="item-content">
+                                <div class="header-inline item-header">
+                                    <h3 class="text-dark-medium font-medium">{{data.firstname}} {{data.lastname}}</h3>
+                                </div>
+                                <div class="info-table table-responsive">
+                                    <table class="table text-nowrap">
+                                        <tbody>
+                                            <tr>
+                                                <td>Name:</td>
+                                                <td class="font-medium text-dark-medium">{{data.firstname}} {{data.lastname}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email:</td>
+                                                <td class="font-medium text-dark-medium">{{user.email}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Contact Number:</td>
+                                                <td class="font-medium text-dark-medium">{{data.contact_number}}</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td>Occupation:</td>
+                                                <td class="font-medium text-dark-medium">{{data.occupation}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gender:</td>
+                                                <td class="font-medium text-dark-medium">{{data.gender}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address:</td>
+                                                <td class="font-medium text-dark-medium">{{address.house_number}} {{address.street}} {{address.city}} {{address.postal_code}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <h2 class="text-center">List of Companies that viewed your Profile</h2>
+
+                <div class="table-responsive">
+                    <table class="table display data-table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input checkAll">
+                                        <label class="form-check-label">No</label>
+                                    </div>
+                                </th>
+                                <th>Name of Company</th>
+                                <th>Unique ID</th>
+                                <th>Shared Code</th>
+                                <th>Viewed Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for share_det in share_dets %}
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input">
+                                            <label class="form-check-label">#{{share_det.id}}</label>
+                                        </div>
+                                    </td>
+                                    {% if share_det.company %}
+                                        <td>{{share_det.company}}</td>
+                                        <td>{{share_det.company.unique_id}}</td>
+                                        <td>{{share_det.share_code}}</td>
+                                        <td>{{share_det.last_viewed}}</td>
+                                    {% else %}
+                                        <td>None</td>
+                                        <td>None</td>
+                                        <td>{{share_det.share_code}}</td>
+                                        <td>Not viewed yet</td>
+                                    {% endif %}
+                                    
+                                    
+                                    
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+               
+            </div>
+        </div>
+        <!-- Page Area End Here -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{% static 'data_collection/js/share_code.js' %}"></script>
+
+    {% comment %} <script>
+        let copyText = document.querySelector('.copy-text');
+        let copyButton = document.getElementById("copy-button")
+        copyButton.addEventListener('click', function(){
+            let input = document.querySelector('.copy_text');
+            input.select();
+            document.execCommand("copy");
+            copyText.classList.add("active");
+            window.getSelection().removeAllRanges();
+            setTimeout(function(){
+                copyText.classList.remove("active");
+            },2500);
+        })
+    </script> {% endcomment %}
+    
+
+{% endblock %}

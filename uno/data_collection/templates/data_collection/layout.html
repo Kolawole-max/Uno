@@ -1,0 +1,140 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}
+        {% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Normalize CSS -->
+    <link href="{% static 'data_collection/css/normalize.css' %}" rel="stylesheet">
+    <!-- Main CSS -->
+    <link href="{% static 'data_collection/css/main.css' %}" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'data_collection/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Fontawesome CSS -->
+    <link href="{% static 'data_collection/css/all.min.css' %}" rel="stylesheet">
+    <!-- Flaticon CSS -->
+    <link href="{% static 'data_collection/fonts/flaticon.css' %}" rel="stylesheet">
+    <!-- Animate CSS -->
+    <link href="{% static 'data_collection/css/animate.min.css' %}" rel="stylesheet">
+    <!-- Select 2 CSS -->
+    <link href="{% static 'data_collection/css/select2.min.css' %}" rel="stylesheet">
+    <!-- Data Table CSS -->
+    <link href="{% static 'data_collection/css/jquery.dataTables.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'data_collection/css/style.css' %}" rel="stylesheet">
+    <!-- Modernize js -->
+    <script src="{% static 'data_collection/jss/modernizr-3.6.0.min.js' %}" defer></script>
+</head>
+
+<body>
+     <!-- Preloader Start Here -->
+    <div id="preloader"></div>
+    <!-- Preloader End Here -->
+    <div id="wrapper" class="wrapper bg-ash">
+        <!-- Header Menu Area Start Here -->
+        <div class="navbar navbar-expand-md header-menu-one bg-light">
+            <div class="nav-bar-header-one">
+                <div class="header-logo">
+                    {% if user_type == "user" %}
+                        <a href="{% url 'profile' %}">
+                            UNO System
+                        </a>
+                    {% else %}
+                        <a href="{% url 'admin_dashboard' %}">
+                            UNO System
+                        </a>
+                    {% endif %}
+                </div>
+                  <div class="toggle-button sidebar-toggle">
+                    <button type="button" class="item-link">
+                        <span class="btn-icon-wrap">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="d-md-none mobile-nav-bar">
+               <button class="navbar-toggler pulse-animation" type="button" data-toggle="collapse" data-target="#mobile-navbar" aria-expanded="false">
+                    <i class="far fa-arrow-alt-circle-down"></i>
+                </button>
+                <button type="button" class="navbar-toggler sidebar-toggle-mobile">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+        </div>
+        <!-- Header Menu Area End Here -->
+        <!-- Page Area Start Here -->
+        <div class="dashboard-page-one">
+            <!-- Sidebar Area Start Here -->
+            <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
+               <div class="mobile-sidebar-header d-md-none">
+                    <div class="header-logo">
+                        <a href="company-dashboard.html"><img src="img/logo1.png" alt="logo"></a>
+                    </div>
+               </div>
+                <div class="sidebar-menu-content">
+                    <ul class="nav nav-sidebar-menu sidebar-toggle-view">
+                        
+                        {% if user_type == "user" %}
+                            <li class="nav-item">
+                                <a href="{% url 'profile' %}" class="nav-link"><i
+                                        class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-toggle="modal" data-target="#myModal"><i
+                                    class="flaticon-checklist"></i><span>Create share code</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'logout' %}" class="nav-link"><i class="flaticon-turn-off"></i><span>Log Out</span></a>
+                            </li>
+                        {% else %} 
+                            <li class="nav-item">
+                                <a href="{% url 'admin_dashboard' %}" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'search_user' %}" class="nav-link"><i class="flaticon-turn-off"></i><span>Search user</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'company_logout' %}" class="nav-link"><i class="flaticon-turn-off"></i><span>Log Out</span></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                </div>
+               
+            <!-- Sidebar Area End Here -->
+
+	{% block body %}
+	{% endblock %}
+
+    <!-- jquery-->
+    <script src="{% static 'data_collection/jss/jquery-3.3.1.min.js' %}" defer></script>
+    <!-- Plugins js -->
+    <script src="{% static 'data_collection/jss/plugins.js' %}" defer></script>
+    <!-- Popper js -->
+    <script src="{% static 'data_collection/jss/popper.min.js' %}" defer></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'data_collection/jss/bootstrap.min.js' %}" defer></script>
+    <!-- Select 2 Js -->
+    <script src="{% static 'data_collection/jss/select2.min.js' %}" defer></script>
+    <!-- Scroll Up Js -->
+    <script src="{% static 'data_collection/jss/jquery.scrollUp.min.js' %}" defer></script>
+    <!-- Data Table Js -->
+    <script src="{% static 'data_collection/jss/jquery.dataTables.min.js' %}" defer></script>
+    <!-- Custom Js -->
+    <script src="{% static 'data_collection/jss/main.js' %}" defer></script>
+</body>
+</html>
