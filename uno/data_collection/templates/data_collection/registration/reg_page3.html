@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'data_collection/css/style2.css' %}" rel="stylesheet">
+    <script src="{% static 'data_collection/js/register.js' %}" defer></script>
+    <title>Registraion Form</title>
+</head>
+
+<body>
+    <form action="{% url 'address_data' %}" method='POST' class="form">
+        {% csrf_token %}
+        <h1 class="text-center">Address details Form</h1>
+        <!-- Progress bar -->
+        <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step" data-title="Pre"></div>
+            <div class="progress-step" data-title="Personal"></div>
+            <div class="progress-step progress-step-active" data-title="Address"></div>
+            <div class="progress-step" data-title="Photo Card"></div>
+            <div class="progress-step" data-title="Live Video"></div>
+        </div>
+
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+            <div class="input-group">
+                <label for="home-number">House Number</label>
+                <input type="number" name="home-number" id="home-number" />
+                <span class="error-message home-number-error"></span>
+
+            </div>
+            <div class="input-group">
+                <label for="street-name">Street Name</label>
+                <input type="text" name="street-name" id="street-name" />
+                <span class="error-message street-name-error"></span>
+
+            </div>
+            <div class="input-group">
+                <label for="city">City</label>
+                <input type="text" name="city" id="city" />
+                <span class="error-message city-error"></span>
+
+            </div>
+            <div class="input-group">
+                <label for="postal-code">Postal Code</label>
+                <input type="text" name="postal-code" id="postal-code" />
+                <span class="error-message postal-code-error"></span>
+            </div>
+            <div class="input-group">
+                <label for="postal-code">Home town</label>
+                <input type="text" name="home-town" id="home-town" />
+                <span class="error-message home-town-error"></span>
+            </div>
+            <div class="btns-group">
+                <button type="submit" href="#" class="btn">Next</button>
+            </div>
+        </div>
+
+        </div>
+    </form>
+</body>
+
+</html>

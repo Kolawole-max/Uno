@@ -1,0 +1,133 @@
+{% extends "data_collection/layout.html" %}
+{% load static %}
+
+{% block title %}
+	Seach user details
+{% endblock %}
+
+{% block body %}
+    
+    {{ name |json_script:"name" }} 
+    {{ error |json_script:"error" }}
+
+    <div class="dashboard-content-one">
+        <!-- Breadcubs Area Start Here -->
+        <div class="breadcrumbs-area">
+            <h3>Users Details</h3>
+            <ul>
+                <li>
+                    <a href="{% url 'admin_dashboard' %}">Company</a>
+                </li>
+                <li>Users Details</li>
+            </ul>
+        </div>
+        <!-- Breadcubs Area End Here -->
+        <!-- Admit Form Area Start Here -->
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>Seach for User</h3>
+                    </div>
+                </div>
+                <form class="new-added-form" action="{% url 'search_user' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>User Name *</label>
+                            <input type="text" placeholder="" class="form-control" name='name'>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Share Code *</label>
+                            <input type="text" placeholder="" class="form-control" name='share_code'>
+                        </div>
+                        <div class="col-12 form-group mg-t-8">
+                            <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" id="search_button">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card height-auto" name="display_info" id="display_info">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                    </div>
+                    <div class="dropdown onprint">
+                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <button onclick="printContent('display_info')" class="dropdown-item download-user-details"><i class="fas fa-arrow-alt-circle-down text-orange-peel"></i>Download</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-info-details">
+                    <div class="item-img">
+                        <img src="{{display_img.faces.url}}" alt="User Image">
+                    </div>
+                    <div class="item-content">
+                        <div class="header-inline item-header">
+                            <h3 class="text-dark-medium font-medium">{{data.firstname}} {{data.lastname}}</h3>
+                        </div>
+                        <div class="info-table table-responsive">
+                            <table class="table text-nowrap">
+                                <tbody>
+                                    <tr>
+                                        <td>Name:</td>
+                                        <td class="font-medium text-dark-medium">{{data.firstname}} {{data.lastname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td class="font-medium text-dark-medium">{{user_email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contact Number:</td>
+                                        <td class="font-medium text-dark-medium">{{data.contact_number}}</td>
+                                    </tr>
+        
+                                    <tr>
+                                        <td>Occupation:</td>
+                                        <td class="font-medium text-dark-medium">{{data.occupation}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender:</td>
+                                        <td class="font-medium text-dark-medium">{{data.gender}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address:</td>
+                                        <td class="font-medium text-dark-medium">{{address.house_number}} {{address.street}} {{address.city}} {{address.postal_code}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                            
+                    </div>
+                    
+                </div><br><br>
+                {% for img in document %}
+                    <center>  <img src="{{img.doc.url}}" alt="User Image">
+                        <h4 class="text-dark-medium font-medium">Passport ID</h4> <br>
+                    </center>
+                {% endfor %}
+                
+        </div>
+    <!-- Page Area End Here -->
+</div>
+
+<script src="{% static 'data_collection/js/search_user.js' %}" defer></script>
+
+<script>
+
+    function printContent(el){
+        var restorPage = document.body.innerHTML;
+        var printContent = document.getElementById(el).innerHTML;
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = restorPage;
+    }
+         // $(this).closest('.card-body').css({'background':'red'});
+        
+</script>
+
+{% endblock %}
